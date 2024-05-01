@@ -61,25 +61,32 @@ public class FirstWindow extends JFrame {
 		contentPane.add(layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
-		JPanel panel = new JPanel();
-		layeredPane.add(panel, "name_192832522917900");
+		JPanel MainMenu = new JPanel();
+		MainMenu.setBackground(new Color(128, 0, 0));
+		layeredPane.add(MainMenu, "name_192832522917900");
 		
-		JPanel panel_1 = new JPanel();
-		layeredPane.add(panel_1, "name_192898624794400");
+		JPanel base = new JPanel();
+		base.setBackground(new Color(128, 0, 0));
+		layeredPane.add(base, "name_192898624794400");
 		
-		JPanel panel_2 = new JPanel();
-		layeredPane.add(panel_2, "name_192902037109000");
+		JPanel topings = new JPanel();
+		topings.setBackground(new Color(128, 0, 0));
+		layeredPane.add(topings, "name_192902037109000");
 		
-		JPanel panel_3 = new JPanel();
-		layeredPane.add(panel_3, "name_192904821809100");
+		JPanel adress = new JPanel();
+		adress.setBackground(new Color(128, 0, 0));
+		layeredPane.add(adress, "name_192904821809100");
 		
-		JPanel panel_4 = new JPanel();
-		layeredPane.add(panel_4, "name_192907103259700");
+		JPanel payment = new JPanel();
+		payment.setBackground(new Color(128, 0, 0));
+		layeredPane.add(payment, "name_192907103259700");
 		
-		JPanel panel_5 = new JPanel();
-		layeredPane.add(panel_5, "name_192915464996200");
+		JPanel delivery = new JPanel();
+		delivery.setBackground(new Color(128, 0, 0));
+		layeredPane.add(delivery, "name_192915464996200");
 		
 		JPanel panel_6 = new JPanel();
+		panel_6.setBackground(new Color(128, 0, 0));
 		layeredPane.add(panel_6, "name_192918410429800");
 	}
 }
