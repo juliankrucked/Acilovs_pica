@@ -18,6 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
+import javax.swing.SwingConstants;
+import java.awt.Font;
+import javax.swing.JComboBox;
+import javax.swing.JSpinner;
 
 public class FirstWindow extends JFrame {
 
@@ -25,13 +29,24 @@ public class FirstWindow extends JFrame {
 	private JPanel contentPane;
 	private JLayeredPane layeredPane;
 	private JPanel base;
-	private JPanel topings;
+	private JPanel toppings;
 	private JPanel adress;
 	private JPanel payment;
 	private JPanel delivery;
 	private JTextField textField;
 	private JLabel pizzaSize;
 	private JPanel orderMenu;
+	private JButton btnNewButton;
+	private JTextField txtTopings;
+	private JTextField txtAcilovsPizzeria;
+	private JTextField txtBaseSize;
+	private JTextField txtAdress;
+	private JTextField textField_1;
+	private JTextField textField_2;
+	private JTextField txtCountry;
+	private JTextField txtStreet;
+	private JTextField txtHomeNr;
+	private JButton btnNewButton_1_2;
 
 	/**
 	 * Launch the application.
@@ -71,7 +86,7 @@ public class FirstWindow extends JFrame {
 		contentPane.setLayout(null);
 		
 		layeredPane = new JLayeredPane();
-		layeredPane.setBounds(44, 39, 696, 456);
+		layeredPane.setBounds(44, 58, 696, 437);
 		contentPane.add(layeredPane);
 		layeredPane.setLayout(new CardLayout(0, 0));
 		
@@ -98,9 +113,14 @@ public class FirstWindow extends JFrame {
 		btnNewButton_1_1.setBounds(287, 183, 137, 23);
 		MainMenu.add(btnNewButton_1_1);
 		
-		JButton btnNewButton_1_3 = new JButton("close");
-		btnNewButton_1_3.setBounds(287, 217, 137, 28);
-		MainMenu.add(btnNewButton_1_3);
+		btnNewButton_1_2 = new JButton("close");
+		btnNewButton_1_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(ABORT);
+			}
+		});
+		btnNewButton_1_2.setBounds(287, 217, 137, 28);
+		MainMenu.add(btnNewButton_1_2);
 		
 		base = new JPanel();
 		base.setBackground(new Color(128, 0, 0));
@@ -152,30 +172,64 @@ public class FirstWindow extends JFrame {
 		pizzaSize.setBounds(377, 11, 250, 412);
 		base.add(pizzaSize);
 		
-		topings = new JPanel();
-		topings.setBackground(new Color(128, 0, 0));
-		layeredPane.add(topings, "name_192902037109000");
-		topings.setLayout(null);
+		JButton btnNewButton_2 = new JButton("Continue");
+		btnNewButton_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanels(toppings);
+			}
+		});
+		btnNewButton_2.setBounds(38, 388, 89, 23);
+		base.add(btnNewButton_2);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("New check box");
-		chckbxNewCheckBox.setBounds(45, 40, 97, 23);
-		topings.add(chckbxNewCheckBox);
+		txtBaseSize = new JTextField();
+		txtBaseSize.setEditable(false);
+		txtBaseSize.setHorizontalAlignment(SwingConstants.CENTER);
+		txtBaseSize.setText("Base size");
+		txtBaseSize.setBounds(281, 11, 86, 20);
+		base.add(txtBaseSize);
+		txtBaseSize.setColumns(10);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("New check box");
-		chckbxNewCheckBox_1.setBounds(45, 88, 97, 23);
-		topings.add(chckbxNewCheckBox_1);
+		toppings = new JPanel();
+		toppings.setBackground(new Color(128, 0, 0));
+		layeredPane.add(toppings, "name_192902037109000");
+		toppings.setLayout(null);
 		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("New check box");
-		chckbxNewCheckBox_2.setBounds(45, 135, 97, 23);
-		topings.add(chckbxNewCheckBox_2);
+		JCheckBox chckbxNewCheckBox = new JCheckBox("shrimps");
+		chckbxNewCheckBox.setBounds(45, 100, 97, 23);
+		toppings.add(chckbxNewCheckBox);
 		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("New check box");
-		chckbxNewCheckBox_3.setBounds(45, 183, 97, 23);
-		topings.add(chckbxNewCheckBox_3);
+		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("olives");
+		chckbxNewCheckBox_1.setBounds(45, 140, 97, 23);
+		toppings.add(chckbxNewCheckBox_1);
 		
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("New check box");
-		chckbxNewCheckBox_4.setBounds(45, 235, 97, 23);
-		topings.add(chckbxNewCheckBox_4);
+		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("salami");
+		chckbxNewCheckBox_2.setBounds(45, 186, 97, 23);
+		toppings.add(chckbxNewCheckBox_2);
+		
+		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("shampinions");
+		chckbxNewCheckBox_3.setBounds(45, 232, 97, 23);
+		toppings.add(chckbxNewCheckBox_3);
+		
+		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("pineapple");
+		chckbxNewCheckBox_4.setBounds(45, 278, 97, 23);
+		toppings.add(chckbxNewCheckBox_4);
+		
+		txtTopings = new JTextField();
+		txtTopings.setEditable(false);
+		txtTopings.setHorizontalAlignment(SwingConstants.CENTER);
+		txtTopings.setText("Toppings");
+		txtTopings.setBounds(281, 11, 86, 20);
+		toppings.add(txtTopings);
+		txtTopings.setColumns(10);
+		
+		JButton btnNewButton_2_1 = new JButton("Continue");
+		btnNewButton_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanels(adress);
+			}
+		});
+		btnNewButton_2_1.setBounds(40, 390, 89, 23);
+		toppings.add(btnNewButton_2_1);
 		
 		adress = new JPanel();
 		adress.setBackground(new Color(128, 0, 0));
@@ -183,14 +237,69 @@ public class FirstWindow extends JFrame {
 		adress.setLayout(null);
 		
 		textField = new JTextField();
-		textField.setBounds(39, 40, 86, 20);
+		textField.setBounds(177, 68, 401, 20);
 		adress.add(textField);
 		textField.setColumns(10);
+		
+		txtAdress = new JTextField();
+		txtAdress.setHorizontalAlignment(SwingConstants.CENTER);
+		txtAdress.setEditable(false);
+		txtAdress.setText("Adress");
+		txtAdress.setBounds(280, 11, 86, 20);
+		adress.add(txtAdress);
+		txtAdress.setColumns(10);
+		
+		JButton btnNewButton_2_2 = new JButton("Continue");
+		btnNewButton_2_2.setBounds(39, 389, 89, 23);
+		adress.add(btnNewButton_2_2);
+		
+		textField_1 = new JTextField();
+		textField_1.setColumns(10);
+		textField_1.setBounds(177, 116, 401, 20);
+		adress.add(textField_1);
+		
+		textField_2 = new JTextField();
+		textField_2.setColumns(10);
+		textField_2.setBounds(177, 171, 401, 20);
+		adress.add(textField_2);
+		
+		txtCountry = new JTextField();
+		txtCountry.setBorder(null);
+		txtCountry.setEditable(false);
+		txtCountry.setForeground(new Color(0, 0, 0));
+		txtCountry.setBackground(new Color(128, 0, 0));
+		txtCountry.setText("City :");
+		txtCountry.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtCountry.setColumns(10);
+		txtCountry.setBounds(81, 68, 86, 20);
+		adress.add(txtCountry);
+		
+		txtStreet = new JTextField();
+		txtStreet.setBackground(new Color(128, 0, 0));
+		txtStreet.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtStreet.setText("street :");
+		txtStreet.setBorder(null);
+		txtStreet.setColumns(10);
+		txtStreet.setBounds(81, 116, 86, 20);
+		adress.add(txtStreet);
+		
+		txtHomeNr = new JTextField();
+		txtHomeNr.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtHomeNr.setText("Home nr. :");
+		txtHomeNr.setBackground(new Color(128, 0, 0));
+		txtHomeNr.setBorder(null);
+		txtHomeNr.setColumns(10);
+		txtHomeNr.setBounds(81, 171, 86, 20);
+		adress.add(txtHomeNr);
 		
 		payment = new JPanel();
 		payment.setBackground(new Color(128, 0, 0));
 		layeredPane.add(payment, "name_192907103259700");
 		payment.setLayout(null);
+		
+		JButton btnNewButton_2_2_1 = new JButton("Continue");
+		btnNewButton_2_2_1.setBounds(40, 389, 89, 23);
+		payment.add(btnNewButton_2_2_1);
 		
 		delivery = new JPanel();
 		delivery.setBackground(new Color(128, 0, 0));
@@ -222,7 +331,7 @@ public class FirstWindow extends JFrame {
 		food5.setBounds(287, 304, 97, 23);
 		orderMenu.add(food5);
 		
-		JCheckBox food6 = new JCheckBox("New check box");
+		JCheckBox food6 = new JCheckBox("steak ");
 		food6.setBounds(519, 304, 97, 23);
 		orderMenu.add(food6);
 		
@@ -245,5 +354,35 @@ public class FirstWindow extends JFrame {
 		lblNewLabel_3.setIcon(new ImageIcon(FirstWindow.class.getResource("/resources/lasagna.png")));
 		lblNewLabel_3.setBounds(52, 194, 104, 100);
 		orderMenu.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("");
+		lblNewLabel_4.setIcon(new ImageIcon(FirstWindow.class.getResource("/resources/sushi.png")));
+		lblNewLabel_4.setBounds(267, 197, 117, 100);
+		orderMenu.add(lblNewLabel_4);
+		
+		JLabel lblNewLabel_5 = new JLabel("");
+		lblNewLabel_5.setIcon(new ImageIcon(FirstWindow.class.getResource("/resources/steak.png")));
+		lblNewLabel_5.setBounds(499, 194, 147, 100);
+		orderMenu.add(lblNewLabel_5);
+		
+		btnNewButton = new JButton("check out");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanels(payment);
+			}
+		});
+		btnNewButton.setBounds(278, 388, 89, 23);
+		orderMenu.add(btnNewButton);
+		
+		txtAcilovsPizzeria = new JTextField();
+		txtAcilovsPizzeria.setEnabled(false);
+		txtAcilovsPizzeria.setEditable(false);
+		txtAcilovsPizzeria.setBackground(new Color(128, 0, 0));
+		txtAcilovsPizzeria.setFont(new Font("Vivaldi", Font.BOLD | Font.ITALIC, 40));
+		txtAcilovsPizzeria.setText("Acilovs pizzeria");
+		txtAcilovsPizzeria.setHorizontalAlignment(SwingConstants.CENTER);
+		txtAcilovsPizzeria.setBounds(44, 11, 696, 44);
+		contentPane.add(txtAcilovsPizzeria);
+		txtAcilovsPizzeria.setColumns(10);
 	}
 }
