@@ -563,7 +563,8 @@ public class FirstWindow extends JFrame {
 		txtAcilovsPizzeria.setColumns(10);
 		
 	
-	}private void WriteOrderToJson(String foodStr, String size, String toppings, JTextField city,
+	}
+	private void WriteOrderToJson(String foodStr, String size, String toppings, JTextField city,
 			JTextField street, JTextField HouseNr, JTextField Name, JTextField surname, JTextField CreditInfo,
 			JTextField CVC) {
 		StringBuilder selectedfood = new StringBuilder();
@@ -587,7 +588,7 @@ public class FirstWindow extends JFrame {
         }
         foodStr = selectedfood.toString();
         
-		String csvFile = "order.json";
+        String csvFile = "order.json";
         try (FileWriter writer = new FileWriter(csvFile)) {
             writer.append("Size");
             writer.append(", ");
@@ -615,26 +616,27 @@ public class FirstWindow extends JFrame {
             writer.append(",");
             writer.append(toppings);
             writer.append(", ");
-            writer.append(city);
+            writer.append(city.getText());
             writer.append(",");
-            writer.append(street);
+            writer.append(street.getText()); 
             writer.append(", ");
-            writer.append(HouseNr);
+            writer.append(HouseNr.getText());
             writer.append(",");
-            writer.append(Name);
+            writer.append(Name.getText()); 
             writer.append(", ");
-            writer.append(surname);
+            writer.append(surname.getText()); 
             writer.append(",");
-            writer.append(CreditInfo);
+            writer.append(CreditInfo.getText()); 
             writer.append(", ");
-            writer.append(CVC);
+            writer.append(CVC.getText()); 
             writer.append("\n");
-            WriteOrderToJson(foodStr,size, toppings, city, street, HouseNr, Name, surname, CreditInfo, CVC);
+            
             System.out.println("Order details written to json successfully!");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+}
     }
 
 
-}
+
