@@ -58,9 +58,6 @@ public class FirstWindow extends JFrame {
 	private JTextField txtPhoneNr;
 	private JTextField txtCvc;
 
-	/**
-	 * Launch the application.
-	 */
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -73,6 +70,8 @@ public class FirstWindow extends JFrame {
 			}
 		});
 	}
+
+			
 	public void switchPanels(JPanel panel)
 	{
 		layeredPane.removeAll();
@@ -81,9 +80,6 @@ public class FirstWindow extends JFrame {
 		layeredPane.revalidate();
 	}
 
-	/**
-	 * Create the frame.
-	 */
 	public FirstWindow() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 830, 574);
@@ -236,6 +232,7 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(adress);
+				
 			}
 		});
 		btnNewButton_2_1.setBounds(40, 390, 89, 23);
@@ -504,4 +501,5 @@ public class FirstWindow extends JFrame {
 		contentPane.add(txtAcilovsPizzeria);
 		txtAcilovsPizzeria.setColumns(10);
 	}
+	
 }
