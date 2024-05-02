@@ -278,12 +278,6 @@ public class FirstWindow extends JFrame {
                 switchPanels(adress);
 		    }
 
-			private void WriteOrderToJson(String foodStr, String size, String toppings, JTextField city,
-					JTextField street, JTextField houseNr, JTextField name, JTextField surname, JTextField creditInfo,
-					JTextField cVC) {
-				// TODO Auto-generated method stub
-				
-			}
 				
 			}
 		);
