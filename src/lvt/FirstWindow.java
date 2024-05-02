@@ -603,8 +603,9 @@ public class FirstWindow extends JFrame {
             writer.append("phone Nr.");
             writer.append(", ");
             writer.append("CVC.");
-            writer.append("\n");
+            writer.append(",");
             writer.append("order menu");
+            writer.append("\n");
             
             writer.append(size);
             writer.append(",");
