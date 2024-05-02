@@ -47,6 +47,16 @@ public class FirstWindow extends JFrame {
 	private JTextField txtStreet;
 	private JTextField txtHomeNr;
 	private JButton btnNewButton_1_2;
+	private JTextField textField_3;
+	private JTextField textField_4;
+	private JTextField textField_5;
+	private JTextField textField_6;
+	private JTextField textField_7;
+	private JTextField txtName;
+	private JTextField txtSurname;
+	private JTextField txtCreditCardNr;
+	private JTextField txtPhoneNr;
+	private JTextField txtCvc;
 
 	/**
 	 * Launch the application.
@@ -237,6 +247,7 @@ public class FirstWindow extends JFrame {
 		adress.setLayout(null);
 		
 		textField = new JTextField();
+		textField.setBackground(new Color(128, 0, 0));
 		textField.setBounds(177, 68, 401, 20);
 		adress.add(textField);
 		textField.setColumns(10);
@@ -250,15 +261,22 @@ public class FirstWindow extends JFrame {
 		txtAdress.setColumns(10);
 		
 		JButton btnNewButton_2_2 = new JButton("Continue");
+		btnNewButton_2_2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanels(payment);
+			}
+		});
 		btnNewButton_2_2.setBounds(39, 389, 89, 23);
 		adress.add(btnNewButton_2_2);
 		
 		textField_1 = new JTextField();
+		textField_1.setBackground(new Color(128, 0, 0));
 		textField_1.setColumns(10);
 		textField_1.setBounds(177, 116, 401, 20);
 		adress.add(textField_1);
 		
 		textField_2 = new JTextField();
+		textField_2.setBackground(new Color(128, 0, 0));
 		textField_2.setColumns(10);
 		textField_2.setBounds(177, 171, 401, 20);
 		adress.add(textField_2);
@@ -275,6 +293,7 @@ public class FirstWindow extends JFrame {
 		adress.add(txtCountry);
 		
 		txtStreet = new JTextField();
+		txtStreet.setEditable(false);
 		txtStreet.setBackground(new Color(128, 0, 0));
 		txtStreet.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtStreet.setText("street :");
@@ -284,6 +303,7 @@ public class FirstWindow extends JFrame {
 		adress.add(txtStreet);
 		
 		txtHomeNr = new JTextField();
+		txtHomeNr.setEditable(false);
 		txtHomeNr.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtHomeNr.setText("Home nr. :");
 		txtHomeNr.setBackground(new Color(128, 0, 0));
@@ -298,13 +318,112 @@ public class FirstWindow extends JFrame {
 		payment.setLayout(null);
 		
 		JButton btnNewButton_2_2_1 = new JButton("Continue");
+		btnNewButton_2_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanels(delivery);
+			}
+		});
 		btnNewButton_2_2_1.setBounds(40, 389, 89, 23);
 		payment.add(btnNewButton_2_2_1);
+		
+		textField_3 = new JTextField();
+		textField_3.setBackground(new Color(128, 0, 0));
+		textField_3.setBounds(147, 65, 133, 20);
+		payment.add(textField_3);
+		textField_3.setColumns(10);
+		
+		textField_4 = new JTextField();
+		textField_4.setBackground(new Color(128, 0, 0));
+		textField_4.setColumns(10);
+		textField_4.setBounds(147, 113, 133, 20);
+		payment.add(textField_4);
+		
+		textField_5 = new JTextField();
+		textField_5.setBackground(new Color(128, 0, 0));
+		textField_5.setColumns(10);
+		textField_5.setBounds(147, 167, 202, 20);
+		payment.add(textField_5);
+		
+		textField_6 = new JTextField();
+		textField_6.setBackground(new Color(128, 0, 0));
+		textField_6.setColumns(10);
+		textField_6.setBounds(147, 229, 152, 20);
+		payment.add(textField_6);
+		
+		textField_7 = new JTextField();
+		textField_7.setBackground(new Color(128, 0, 0));
+		textField_7.setColumns(10);
+		textField_7.setBounds(147, 283, 73, 20);
+		payment.add(textField_7);
+		
+		txtName = new JTextField();
+		txtName.setEditable(false);
+		txtName.setBorder(null);
+		txtName.setBackground(new Color(128, 0, 0));
+		txtName.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtName.setText("Name :");
+		txtName.setColumns(10);
+		txtName.setBounds(52, 65, 86, 20);
+		payment.add(txtName);
+		
+		txtSurname = new JTextField();
+		txtSurname.setEditable(false);
+		txtSurname.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtSurname.setText("Surname :");
+		txtSurname.setBackground(new Color(128, 0, 0));
+		txtSurname.setBorder(null);
+		txtSurname.setColumns(10);
+		txtSurname.setBounds(51, 113, 86, 20);
+		payment.add(txtSurname);
+		
+		txtCreditCardNr = new JTextField();
+		txtCreditCardNr.setEditable(false);
+		txtCreditCardNr.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtCreditCardNr.setText("Credit card Nr. :");
+		txtCreditCardNr.setBackground(new Color(128, 0, 0));
+		txtCreditCardNr.setBorder(null);
+		txtCreditCardNr.setColumns(10);
+		txtCreditCardNr.setBounds(52, 167, 86, 20);
+		payment.add(txtCreditCardNr);
+		
+		txtPhoneNr = new JTextField();
+		txtPhoneNr.setEditable(false);
+		txtPhoneNr.setBackground(new Color(128, 0, 0));
+		txtPhoneNr.setText("Phone Nr. :");
+		txtPhoneNr.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtPhoneNr.setBorder(null);
+		txtPhoneNr.setColumns(10);
+		txtPhoneNr.setBounds(52, 229, 86, 20);
+		payment.add(txtPhoneNr);
+		
+		txtCvc = new JTextField();
+		txtCvc.setEditable(false);
+		txtCvc.setBackground(new Color(128, 0, 0));
+		txtCvc.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtCvc.setText("CVC : ");
+		txtCvc.setBorder(null);
+		txtCvc.setColumns(10);
+		txtCvc.setBounds(52, 283, 86, 20);
+		payment.add(txtCvc);
 		
 		delivery = new JPanel();
 		delivery.setBackground(new Color(128, 0, 0));
 		layeredPane.add(delivery, "name_192915464996200");
 		delivery.setLayout(null);
+		
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setIcon(new ImageIcon(FirstWindow.class.getResource("/resources/end02.png")));
+		lblNewLabel_6.setBounds(0, 0, 696, 398);
+		delivery.add(lblNewLabel_6);
+		
+		JButton btnNewButton_1_2_1 = new JButton("Close");
+		btnNewButton_1_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(ABORT);
+			}
+		});
+		btnNewButton_1_2_1.setBounds(270, 398, 137, 28);
+		delivery.add(btnNewButton_1_2_1);
 		
 		orderMenu = new JPanel();
 		orderMenu.setBackground(new Color(128, 0, 0));
@@ -368,10 +487,10 @@ public class FirstWindow extends JFrame {
 		btnNewButton = new JButton("check out");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanels(payment);
+				switchPanels(adress);
 			}
 		});
-		btnNewButton.setBounds(278, 388, 89, 23);
+		btnNewButton.setBounds(287, 390, 97, 23);
 		orderMenu.add(btnNewButton);
 		
 		txtAcilovsPizzeria = new JTextField();
