@@ -4,6 +4,7 @@ import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -14,14 +15,12 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.border.MatteBorder;
 import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JComboBox;
-import javax.swing.JSpinner;
+import javax.swing.border.MatteBorder;
 
 public class FirstWindow extends JFrame {
 
@@ -57,6 +56,11 @@ public class FirstWindow extends JFrame {
 	private JTextField txtCreditCardNr;
 	private JTextField txtPhoneNr;
 	private JTextField txtCvc;
+	private JCheckBox chckbxNewCheckBox;
+	private JCheckBox chckbxNewCheckBox_1;
+	private JCheckBox chckbxNewCheckBox_2;
+	private JCheckBox chckbxNewCheckBox_3;
+	private JCheckBox chckbxNewCheckBox_4;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -70,8 +74,7 @@ public class FirstWindow extends JFrame {
 			}
 		});
 	}
-
-			
+	
 	public void switchPanels(JPanel panel)
 	{
 		layeredPane.removeAll();
@@ -200,23 +203,23 @@ public class FirstWindow extends JFrame {
 		layeredPane.add(toppings, "name_192902037109000");
 		toppings.setLayout(null);
 		
-		JCheckBox chckbxNewCheckBox = new JCheckBox("shrimps");
+		chckbxNewCheckBox = new JCheckBox("shrimps");
 		chckbxNewCheckBox.setBounds(45, 100, 97, 23);
 		toppings.add(chckbxNewCheckBox);
 		
-		JCheckBox chckbxNewCheckBox_1 = new JCheckBox("olives");
+		chckbxNewCheckBox_1 = new JCheckBox("olives");
 		chckbxNewCheckBox_1.setBounds(45, 140, 97, 23);
 		toppings.add(chckbxNewCheckBox_1);
 		
-		JCheckBox chckbxNewCheckBox_2 = new JCheckBox("salami");
+		chckbxNewCheckBox_2 = new JCheckBox("salami");
 		chckbxNewCheckBox_2.setBounds(45, 186, 97, 23);
 		toppings.add(chckbxNewCheckBox_2);
 		
-		JCheckBox chckbxNewCheckBox_3 = new JCheckBox("shampinions");
+		chckbxNewCheckBox_3 = new JCheckBox("shampinions");
 		chckbxNewCheckBox_3.setBounds(45, 232, 97, 23);
 		toppings.add(chckbxNewCheckBox_3);
 		
-		JCheckBox chckbxNewCheckBox_4 = new JCheckBox("pineapple");
+		chckbxNewCheckBox_4 = new JCheckBox("pineapple");
 		chckbxNewCheckBox_4.setBounds(45, 278, 97, 23);
 		toppings.add(chckbxNewCheckBox_4);
 		
@@ -231,10 +234,26 @@ public class FirstWindow extends JFrame {
 		JButton btnNewButton_2_1 = new JButton("Continue");
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanels(adress);
-				
-			}
+				if (!chckbxNewCheckBox.isSelected() && 
+			            !chckbxNewCheckBox_1.isSelected() && 
+			            !chckbxNewCheckBox_2.isSelected() && 
+			            !chckbxNewCheckBox_3.isSelected() && 
+			            !chckbxNewCheckBox_4.isSelected()) {
+					JOptionPane.showMessageDialog(null, "Please select at least one topping.", "Error", JOptionPane.ERROR_MESSAGE);
+		        } else {
+		          
+		            switchPanels(adress);
+		        }
+		    }
 		});
+				
+		ButtonGroup topps = new ButtonGroup();
+		topps.add(chckbxNewCheckBox);
+		topps.add(chckbxNewCheckBox_1);
+		topps.add(chckbxNewCheckBox_2);
+		topps.add(chckbxNewCheckBox_3); 
+		topps.add(chckbxNewCheckBox_4); 
+		
 		btnNewButton_2_1.setBounds(40, 390, 89, 23);
 		toppings.add(btnNewButton_2_1);
 		
