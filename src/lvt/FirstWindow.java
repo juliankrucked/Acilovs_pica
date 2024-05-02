@@ -264,33 +264,54 @@ public class FirstWindow extends JFrame {
                     selectedToppings.append("Pineapple, ");
                 }
                 String toppings = selectedToppings.toString();
-
-                writeOrderToCSV(size, toppings);
+                
+                writeOrderTojson(size, toppings);
 
                 switchPanels(adress);
 		    }
 
-			private void writeOrderToCSV(String size, String toppings) {
-				String csvFile = "order.csv";
+			private void writeOrderTojson(String size, String toppings) {
+				String csvFile = "order.json";
 		        try (FileWriter writer = new FileWriter(csvFile)) {
 		            writer.append("Size");
 		            writer.append(",");
 		            writer.append("Toppings");
+		            writer.append(",");
+		            writer.append("City");
+		            writer.append(",");
+		            writer.append("street");
+		            writer.append(",");
+		            writer.append("House Nr.");
+		            writer.append(",");
+		            writer.append("Name");
+		            writer.append(",");
+		            writer.append("surname");
+		            writer.append(",");
+		            writer.append("credit card Nr.");
+		            writer.append(",");
+		            writer.append("phone Nr.");
+		            writer.append(",");
+		            writer.append("CVC.");
+		            writer.append("\n");
+		            
+		            writer.append(size);
+		            writer.append(",");
+		            writer.append(toppings);
 		            writer.append("\n");
 
 		            writer.append(size);
 		            writer.append(",");
 		            writer.append(toppings);
 		            writer.append("\n");
-
-		            System.out.println("Order details written to CSV successfully!");
+		            
+		            System.out.println("Order details written to json successfully!");
 		        } catch (IOException ex) {
 		            ex.printStackTrace();
 		        }
 		    }
 				
 			}
-		});
+		);
 				
 		
 		
@@ -320,6 +341,7 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(payment);
+				textField_1.getText();
 			}
 	});
 		
