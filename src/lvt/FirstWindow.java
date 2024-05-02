@@ -36,7 +36,7 @@ public class FirstWindow extends JFrame {
 	private JPanel adress;
 	private JPanel payment;
 	private JPanel delivery;
-	private JTextField textField;
+	private JTextField city;
 	private JLabel pizzaSize;
 	private JPanel orderMenu;
 	private JButton btnNewButton;
@@ -44,17 +44,17 @@ public class FirstWindow extends JFrame {
 	private JTextField txtAcilovsPizzeria;
 	private JTextField txtBaseSize;
 	private JTextField txtAdress;
-	private JTextField textField_1;
-	private JTextField textField_2;
+	private JTextField street;
+	private JTextField HouseNr;
 	private JTextField txtCountry;
 	private JTextField txtStreet;
 	private JTextField txtHomeNr;
 	private JButton btnNewButton_1_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField Name;
+	private JTextField surname;
+	private JTextField CreditInfo;
+	private JTextField PhoneNr;
+	private JTextField CVC;
 	private JTextField txtName;
 	private JTextField txtSurname;
 	private JTextField txtCreditCardNr;
@@ -65,6 +65,13 @@ public class FirstWindow extends JFrame {
 	private JCheckBox chckbxNewCheckBox_2;
 	private JCheckBox chckbxNewCheckBox_3;
 	private JCheckBox chckbxNewCheckBox_4;
+	private JCheckBox food1;
+	private JCheckBox food2;
+	private JCheckBox food3;
+	private JCheckBox food4;
+	private JCheckBox food5;
+	private JCheckBox food6;
+	private String foodStr="";
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -265,50 +272,18 @@ public class FirstWindow extends JFrame {
                 }
                 String toppings = selectedToppings.toString();
                 
-                writeOrderTojson(size, toppings);
+                WriteOrderToJson(foodStr,size, toppings, city, street, HouseNr, Name, surname, CreditInfo, CVC);
+                //String food, String size, String toppings, String city, String street, String HouseNr, String Name, String surname, String CreditInfo, String CVC
 
                 switchPanels(adress);
 		    }
 
-			private void writeOrderTojson(String size, String toppings) {
-				String csvFile = "order.json";
-		        try (FileWriter writer = new FileWriter(csvFile)) {
-		            writer.append("Size");
-		            writer.append(",");
-		            writer.append("Toppings");
-		            writer.append(",");
-		            writer.append("City");
-		            writer.append(",");
-		            writer.append("street");
-		            writer.append(",");
-		            writer.append("House Nr.");
-		            writer.append(",");
-		            writer.append("Name");
-		            writer.append(",");
-		            writer.append("surname");
-		            writer.append(",");
-		            writer.append("credit card Nr.");
-		            writer.append(",");
-		            writer.append("phone Nr.");
-		            writer.append(",");
-		            writer.append("CVC.");
-		            writer.append("\n");
-		            
-		            writer.append(size);
-		            writer.append(",");
-		            writer.append(toppings);
-		            writer.append("\n");
-
-		            writer.append(size);
-		            writer.append(",");
-		            writer.append(toppings);
-		            writer.append("\n");
-		            
-		            System.out.println("Order details written to json successfully!");
-		        } catch (IOException ex) {
-		            ex.printStackTrace();
-		        }
-		    }
+			private void WriteOrderToJson(String foodStr, String size, String toppings, JTextField city,
+					JTextField street, JTextField houseNr, JTextField name, JTextField surname, JTextField creditInfo,
+					JTextField cVC) {
+				// TODO Auto-generated method stub
+				
+			}
 				
 			}
 		);
@@ -323,11 +298,11 @@ public class FirstWindow extends JFrame {
 		layeredPane.add(adress, "name_192904821809100");
 		adress.setLayout(null);
 		
-		textField = new JTextField();
-		textField.setBackground(new Color(128, 0, 0));
-		textField.setBounds(177, 68, 401, 20);
-		adress.add(textField);
-		textField.setColumns(10);
+		city = new JTextField();
+		city.setBackground(new Color(128, 0, 0));
+		city.setBounds(177, 68, 401, 20);
+		adress.add(city);
+		city.setColumns(10);
 		
 		txtAdress = new JTextField();
 		txtAdress.setHorizontalAlignment(SwingConstants.CENTER);
@@ -341,7 +316,10 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(payment);
-				textField_1.getText();
+				street.getText();
+				city.getText();
+				HouseNr.getText();
+				
 			}
 	});
 		
@@ -349,17 +327,17 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_2.setBounds(39, 389, 89, 23);
 		adress.add(btnNewButton_2_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setBackground(new Color(128, 0, 0));
-		textField_1.setColumns(10);
-		textField_1.setBounds(177, 116, 401, 20);
-		adress.add(textField_1);
+		street = new JTextField();
+		street.setBackground(new Color(128, 0, 0));
+		street.setColumns(10);
+		street.setBounds(177, 116, 401, 20);
+		adress.add(street);
 		
-		textField_2 = new JTextField();
-		textField_2.setBackground(new Color(128, 0, 0));
-		textField_2.setColumns(10);
-		textField_2.setBounds(177, 171, 401, 20);
-		adress.add(textField_2);
+		HouseNr = new JTextField();
+		HouseNr.setBackground(new Color(128, 0, 0));
+		HouseNr.setColumns(10);
+		HouseNr.setBounds(177, 171, 401, 20);
+		adress.add(HouseNr);
 		
 		txtCountry = new JTextField();
 		txtCountry.setBorder(null);
@@ -385,7 +363,7 @@ public class FirstWindow extends JFrame {
 		txtHomeNr = new JTextField();
 		txtHomeNr.setEditable(false);
 		txtHomeNr.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtHomeNr.setText("Home nr. :");
+		txtHomeNr.setText("House nr. :");
 		txtHomeNr.setBackground(new Color(128, 0, 0));
 		txtHomeNr.setBorder(null);
 		txtHomeNr.setColumns(10);
@@ -406,35 +384,35 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_2_1.setBounds(40, 389, 89, 23);
 		payment.add(btnNewButton_2_2_1);
 		
-		textField_3 = new JTextField();
-		textField_3.setBackground(new Color(128, 0, 0));
-		textField_3.setBounds(147, 65, 133, 20);
-		payment.add(textField_3);
-		textField_3.setColumns(10);
+		Name = new JTextField();
+		Name.setBackground(new Color(128, 0, 0));
+		Name.setBounds(147, 65, 133, 20);
+		payment.add(Name);
+		Name.setColumns(10);
 		
-		textField_4 = new JTextField();
-		textField_4.setBackground(new Color(128, 0, 0));
-		textField_4.setColumns(10);
-		textField_4.setBounds(147, 113, 133, 20);
-		payment.add(textField_4);
+		surname = new JTextField();
+		surname.setBackground(new Color(128, 0, 0));
+		surname.setColumns(10);
+		surname.setBounds(147, 113, 133, 20);
+		payment.add(surname);
 		
-		textField_5 = new JTextField();
-		textField_5.setBackground(new Color(128, 0, 0));
-		textField_5.setColumns(10);
-		textField_5.setBounds(147, 167, 202, 20);
-		payment.add(textField_5);
+		CreditInfo = new JTextField();
+		CreditInfo.setBackground(new Color(128, 0, 0));
+		CreditInfo.setColumns(10);
+		CreditInfo.setBounds(147, 167, 202, 20);
+		payment.add(CreditInfo);
 		
-		textField_6 = new JTextField();
-		textField_6.setBackground(new Color(128, 0, 0));
-		textField_6.setColumns(10);
-		textField_6.setBounds(147, 229, 152, 20);
-		payment.add(textField_6);
+		PhoneNr = new JTextField();
+		PhoneNr.setBackground(new Color(128, 0, 0));
+		PhoneNr.setColumns(10);
+		PhoneNr.setBounds(147, 229, 152, 20);
+		payment.add(PhoneNr);
 		
-		textField_7 = new JTextField();
-		textField_7.setBackground(new Color(128, 0, 0));
-		textField_7.setColumns(10);
-		textField_7.setBounds(147, 283, 73, 20);
-		payment.add(textField_7);
+		CVC = new JTextField();
+		CVC.setBackground(new Color(128, 0, 0));
+		CVC.setColumns(10);
+		CVC.setBounds(147, 283, 73, 20);
+		payment.add(CVC);
 		
 		txtName = new JTextField();
 		txtName.setEditable(false);
@@ -510,27 +488,27 @@ public class FirstWindow extends JFrame {
 		layeredPane.add(orderMenu, "name_86941943583000");
 		orderMenu.setLayout(null);
 		
-		JCheckBox food1 = new JCheckBox("lobster");
+		food1 = new JCheckBox("lobster");
 		food1.setBounds(52, 131, 97, 23);
 		orderMenu.add(food1);
 		
-		JCheckBox food2 = new JCheckBox("sandwich");
+		food2 = new JCheckBox("sandwich");
 		food2.setBounds(287, 131, 97, 23);
 		orderMenu.add(food2);
 		
-		JCheckBox food3 = new JCheckBox("burger");
+		food3 = new JCheckBox("burger");
 		food3.setBounds(519, 131, 97, 23);
 		orderMenu.add(food3);
 		
-		JCheckBox food4 = new JCheckBox("lasagna");
+		food4 = new JCheckBox("lasagna");
 		food4.setBounds(52, 304, 97, 23);
 		orderMenu.add(food4);
 		
-		JCheckBox food5 = new JCheckBox("sushi");
+		food5 = new JCheckBox("sushi");
 		food5.setBounds(287, 304, 97, 23);
 		orderMenu.add(food5);
 		
-		JCheckBox food6 = new JCheckBox("steak ");
+		food6 = new JCheckBox("steak ");
 		food6.setBounds(519, 304, 97, 23);
 		orderMenu.add(food6);
 		
@@ -583,6 +561,80 @@ public class FirstWindow extends JFrame {
 		txtAcilovsPizzeria.setBounds(44, 11, 696, 44);
 		contentPane.add(txtAcilovsPizzeria);
 		txtAcilovsPizzeria.setColumns(10);
-	}
+		
 	
+	}private void WriteOrderToJson(String foodStr, String size, String toppings, JTextField city,
+			JTextField street, JTextField HouseNr, JTextField Name, JTextField surname, JTextField CreditInfo,
+			JTextField CVC) {
+		StringBuilder selectedfood = new StringBuilder();
+        if (food1.isSelected()) {
+        	selectedfood.append("lobster, ");
+        }
+        if (food2.isSelected()) {
+        	selectedfood.append("sandwich, ");
+        }
+        if (food3.isSelected()) {
+        	selectedfood.append("Burger, ");
+        }
+        if (food4.isSelected()) {
+        	selectedfood.append("lasagna, ");
+        }
+        if (food5.isSelected()) {
+        	selectedfood.append("sushi, ");
+        }
+        if (food6.isSelected()) {
+        	selectedfood.append("steak, ");
+        }
+        foodStr = selectedfood.toString();
+        
+		String csvFile = "order.json";
+        try (FileWriter writer = new FileWriter(csvFile)) {
+            writer.append("Size");
+            writer.append(", ");
+            writer.append("Toppings");
+            writer.append(", ");
+            writer.append("City");
+            writer.append(", ");
+            writer.append("street");
+            writer.append(", ");
+            writer.append("House Nr.");
+            writer.append(", ");
+            writer.append("Name");
+            writer.append(", ");
+            writer.append("surname");
+            writer.append(", ");
+            writer.append("credit card Nr.");
+            writer.append(", ");
+            writer.append("phone Nr.");
+            writer.append(", ");
+            writer.append("CVC.");
+            writer.append("\n");
+            writer.append("order menu");
+            
+            writer.append(size);
+            writer.append(",");
+            writer.append(toppings);
+            writer.append(", ");
+            writer.append(city);
+            writer.append(",");
+            writer.append(street);
+            writer.append(", ");
+            writer.append(HouseNr);
+            writer.append(",");
+            writer.append(Name);
+            writer.append(", ");
+            writer.append(surname);
+            writer.append(",");
+            writer.append(CreditInfo);
+            writer.append(", ");
+            writer.append(CVC);
+            writer.append("\n");
+            WriteOrderToJson(foodStr,size, toppings, city, street, HouseNr, Name, surname, CreditInfo, CVC);
+            System.out.println("Order details written to json successfully!");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
 }
