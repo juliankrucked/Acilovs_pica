@@ -31,6 +31,8 @@ import javax.swing.JSeparator;
 import javax.swing.JTextArea;
 import javax.swing.JMenuBar;
 import javax.swing.JComboBox;
+import javax.swing.event.AncestorListener;
+import javax.swing.event.AncestorEvent;
 
 public class FirstWindow extends JFrame {
 
@@ -79,7 +81,10 @@ public class FirstWindow extends JFrame {
 	private String foodStr="";
 	private JTextField txtPizzaCount;
 	private JTextField textPizaCount;
-
+	private String size = "";
+	private JButton btnNewButton_2_1;
+	private JLabel checkLbl;
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -199,7 +204,7 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String size = "";
+				size = "";
                 if (rdbtnSize1.isSelected()) {
                     size = "20 cm";
                 } else if (rdbtnSize2.isSelected()) {
@@ -230,6 +235,7 @@ public class FirstWindow extends JFrame {
 		textPizaCount.setColumns(10);
 		
 		txtPizzaCount = new JTextField();
+		txtPizzaCount.setForeground(new Color(224, 255, 255));
 		txtPizzaCount.setEditable(false);
 		txtPizzaCount.setBorder(null);
 		txtPizzaCount.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -279,32 +285,11 @@ public class FirstWindow extends JFrame {
 		toppings.add(txtTopings);
 		txtTopings.setColumns(10);
 		
-		JButton btnNewButton_2_1 = new JButton("Continue");
+		btnNewButton_2_1 = new JButton("Continue");
 		btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 
-
-
-                StringBuilder selectedToppings = new StringBuilder();
-                if (chckbxNewCheckBox.isSelected()) {
-                    selectedToppings.append("Shrimps, ");
-                }
-                if (chckbxNewCheckBox_1.isSelected()) {
-                    selectedToppings.append("Olives, ");
-                }
-                if (chckbxNewCheckBox_2.isSelected()) {
-                    selectedToppings.append("Salami, ");
-                }
-                if (chckbxNewCheckBox_3.isSelected()) {
-                    selectedToppings.append("Shampinions, ");
-                }
-                if (chckbxNewCheckBox_4.isSelected()) {
-                    selectedToppings.append("Pineapple, ");
-                }
-                String toppings = selectedToppings.toString();
-                
-                WriteOrderTotxt(foodStr,sizes, toppings, city, street, HouseNr, Name, surname, CreditInfo, CVC,textPizaCount);
+				//WriteOrderTotxt(foodStr, city, street, HouseNr, Name, surname, CreditInfo, CVC,textPizaCount);
                 //String food, String size, String toppings, String city, String street, String HouseNr, String Name, String surname, String CreditInfo, String CVC
 
                 switchPanels(payment);
@@ -344,11 +329,10 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				switchPanels(delivery);
 				street.getText();
 				city.getText();
 				HouseNr.getText();
-				switchPanels(delivery);
-				
 				
 			}
 	});
@@ -375,7 +359,7 @@ public class FirstWindow extends JFrame {
 		txtCountry.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtCountry.setBorder(null);
 		txtCountry.setEditable(false);
-		txtCountry.setForeground(new Color(0, 0, 0));
+		txtCountry.setForeground(new Color(224, 255, 255));
 		txtCountry.setBackground(new Color(128, 0, 0));
 		txtCountry.setText("City :");
 		txtCountry.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -384,6 +368,7 @@ public class FirstWindow extends JFrame {
 		adress.add(txtCountry);
 		
 		txtStreet = new JTextField();
+		txtStreet.setForeground(new Color(224, 255, 255));
 		txtStreet.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtStreet.setEditable(false);
 		txtStreet.setBackground(new Color(128, 0, 0));
@@ -395,6 +380,7 @@ public class FirstWindow extends JFrame {
 		adress.add(txtStreet);
 		
 		txtHomeNr = new JTextField();
+		txtHomeNr.setForeground(new Color(224, 255, 255));
 		txtHomeNr.setCaretColor(Color.WHITE);
 		txtHomeNr.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtHomeNr.setEditable(false);
@@ -457,6 +443,7 @@ public class FirstWindow extends JFrame {
 		payment.add(CVC);
 		
 		txtName = new JTextField();
+		txtName.setForeground(new Color(224, 255, 255));
 		txtName.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtName.setEditable(false);
 		txtName.setBorder(null);
@@ -468,6 +455,7 @@ public class FirstWindow extends JFrame {
 		payment.add(txtName);
 		
 		txtSurname = new JTextField();
+		txtSurname.setForeground(new Color(224, 255, 255));
 		txtSurname.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtSurname.setEditable(false);
 		txtSurname.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -479,6 +467,7 @@ public class FirstWindow extends JFrame {
 		payment.add(txtSurname);
 		
 		txtCreditCardNr = new JTextField();
+		txtCreditCardNr.setForeground(new Color(224, 255, 255));
 		txtCreditCardNr.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtCreditCardNr.setEditable(false);
 		txtCreditCardNr.setHorizontalAlignment(SwingConstants.RIGHT);
@@ -490,6 +479,7 @@ public class FirstWindow extends JFrame {
 		payment.add(txtCreditCardNr);
 		
 		txtPhoneNr = new JTextField();
+		txtPhoneNr.setForeground(new Color(224, 255, 255));
 		txtPhoneNr.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtPhoneNr.setEditable(false);
 		txtPhoneNr.setBackground(new Color(128, 0, 0));
@@ -501,6 +491,7 @@ public class FirstWindow extends JFrame {
 		payment.add(txtPhoneNr);
 		
 		txtCvc = new JTextField();
+		txtCvc.setForeground(new Color(224, 255, 255));
 		txtCvc.setFont(new Font("Tahoma", Font.BOLD, 15));
 		txtCvc.setEditable(false);
 		txtCvc.setBackground(new Color(128, 0, 0));
@@ -512,9 +503,24 @@ public class FirstWindow extends JFrame {
 		payment.add(txtCvc);
 		
 		delivery = new JPanel();
+		delivery.addAncestorListener(new AncestorListener() {
+			public void ancestorAdded(AncestorEvent event) {
+			}
+			public void ancestorMoved(AncestorEvent event) {
+			}
+			public void ancestorRemoved(AncestorEvent event) {
+			}
+		});
 		delivery.setBackground(new Color(128, 0, 0));
 		layeredPane.add(delivery, "name_192915464996200");
 		delivery.setLayout(null);
+		
+		checkLbl = new JLabel("Order details written to order.txt successfully");
+		checkLbl.setForeground(new Color(224, 255, 255));
+		checkLbl.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		checkLbl.setHorizontalAlignment(SwingConstants.CENTER);
+		checkLbl.setBounds(10, 11, 613, 415);
+		delivery.add(checkLbl);
 		
 		orderMenu = new JPanel();
 		orderMenu.setBackground(new Color(128, 0, 0));
@@ -585,7 +591,7 @@ public class FirstWindow extends JFrame {
 		orderMenu.add(btnNewButton);
 		
 		txtAcilovsPizzeria = new JTextField();
-		txtAcilovsPizzeria.setForeground(new Color(107, 142, 35));
+		txtAcilovsPizzeria.setForeground(new Color(224, 255, 255));
 		txtAcilovsPizzeria.setEditable(false);
 		txtAcilovsPizzeria.setBackground(new Color(128, 0, 0));
 		txtAcilovsPizzeria.setFont(new Font("Vivaldi", Font.BOLD | Font.ITALIC, 40));
@@ -601,13 +607,16 @@ public class FirstWindow extends JFrame {
 		contentPane.add(btnNewButton_1_2_1);
 		btnNewButton_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.exit(ABORT);
+				
+				WriteOrderTotxt(foodStr, city, street, HouseNr, Name, surname, CreditInfo, CVC,textPizaCount);
+
+				
 			}
 		});
 		
 	
 	}
-	private void WriteOrderTotxt(String foodStr, ButtonGroup sizes, String toppings, JTextField city,JTextField textPizaCount,
+	private void WriteOrderTotxt(String foodStr, JTextField city,JTextField textPizaCount,
 			JTextField street, JTextField HouseNr, JTextField Name, JTextField surname, JTextField CreditInfo,
 			JTextField CVC) {
 		StringBuilder selectedfood = new StringBuilder();
@@ -630,7 +639,23 @@ public class FirstWindow extends JFrame {
         	selectedfood.append("steak, ");
         }
         foodStr = selectedfood.toString();
-        
+        StringBuilder selectedToppings = new StringBuilder();
+        if (chckbxNewCheckBox.isSelected()) {
+            selectedToppings.append("Shrimps, ");
+        }
+        if (chckbxNewCheckBox_1.isSelected()) {
+            selectedToppings.append("Olives, ");
+        }
+        if (chckbxNewCheckBox_2.isSelected()) {
+            selectedToppings.append("Salami, ");
+        }
+        if (chckbxNewCheckBox_3.isSelected()) {
+            selectedToppings.append("Shampinions, ");
+        }
+        if (chckbxNewCheckBox_4.isSelected()) {
+            selectedToppings.append("Pineapple, ");
+        }
+        String toppinzStr =  selectedToppings.toString();
         String txtFile = "order.txt";
         try (FileWriter writer = new FileWriter(txtFile)) {
             writer.append("Size");
@@ -659,9 +684,9 @@ public class FirstWindow extends JFrame {
             writer.append("\n");
             
             
-            writer.append(sizes);
+            writer.append(size);
             writer.append(",");
-            writer.append(toppings);
+            writer.append( toppinzStr);
             writer.append(", ");
             writer.append(city.getText());
             writer.append(",");
@@ -677,10 +702,13 @@ public class FirstWindow extends JFrame {
             writer.append(", ");
             writer.append(CVC.getText()); 
             writer.append(",");
-            writer.append((CharSequence) textPizaCount);
+            writer.append(textPizaCount.getText());
             writer.append("\n");
-            
-            System.out.println("Order details written to txt successfully!");
+            String check="<br>"
+            		+ "<br>";
+            checkLbl.setText(check);
+            System.out.println("Order details written to txt successfully");
+            System.exit(ABORT);
         } catch (IOException ex) {
             ex.printStackTrace();
         }

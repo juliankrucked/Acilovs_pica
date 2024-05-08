@@ -1,2 +1,0 @@
-Size, Toppings, City, street, House Nr., Name, surname, credit card Nr., phone Nr., CVC.,order menu,textPizaCount
-30 cm,Shrimps, , ,, ,, ,, 13,
