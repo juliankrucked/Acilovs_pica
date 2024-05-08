@@ -25,6 +25,12 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
+import javax.swing.JSlider;
+import javax.swing.JProgressBar;
+import javax.swing.JSeparator;
+import javax.swing.JTextArea;
+import javax.swing.JMenuBar;
+import javax.swing.JComboBox;
 
 public class FirstWindow extends JFrame {
 
@@ -49,7 +55,6 @@ public class FirstWindow extends JFrame {
 	private JTextField txtCountry;
 	private JTextField txtStreet;
 	private JTextField txtHomeNr;
-	private JButton btnNewButton_1_2;
 	private JTextField Name;
 	private JTextField surname;
 	private JTextField CreditInfo;
@@ -72,6 +77,8 @@ public class FirstWindow extends JFrame {
 	private JCheckBox food5;
 	private JCheckBox food6;
 	private String foodStr="";
+	private JTextField txtPizzaCount;
+	private JTextField textPizaCount;
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -135,16 +142,6 @@ public class FirstWindow extends JFrame {
 		btnNewButton_1_1.setBounds(235, 217, 196, 64);
 		MainMenu.add(btnNewButton_1_1);
 		
-		btnNewButton_1_2 = new JButton("close");
-		btnNewButton_1_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		btnNewButton_1_2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(ABORT);
-			}
-		});
-		btnNewButton_1_2.setBounds(235, 292, 196, 64);
-		MainMenu.add(btnNewButton_1_2);
-		
 		base = new JPanel();
 		base.setBackground(new Color(128, 0, 0));
 		layeredPane.add(base, "base");
@@ -202,6 +199,15 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String size = "";
+                if (rdbtnSize1.isSelected()) {
+                    size = "20 cm";
+                } else if (rdbtnSize2.isSelected()) {
+                    size = "25 cm";
+                } else if (rdbtnSize3.isSelected()) {
+                    size = "30 cm";
+                }
+                txtPizzaCount.getText();
 				switchPanels(toppings);
 			}
 		});
@@ -216,6 +222,23 @@ public class FirstWindow extends JFrame {
 		txtBaseSize.setBounds(281, 11, 150, 42);
 		base.add(txtBaseSize);
 		txtBaseSize.setColumns(10);
+		
+		textPizaCount = new JTextField();
+		textPizaCount.setFont(new Font("Tahoma", Font.BOLD, 15));
+		textPizaCount.setBounds(157, 226, 103, 42);
+		base.add(textPizaCount);
+		textPizaCount.setColumns(10);
+		
+		txtPizzaCount = new JTextField();
+		txtPizzaCount.setEditable(false);
+		txtPizzaCount.setBorder(null);
+		txtPizzaCount.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtPizzaCount.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txtPizzaCount.setText("pizza count");
+		txtPizzaCount.setBackground(new Color(128, 0, 0));
+		txtPizzaCount.setBounds(51, 226, 103, 42);
+		base.add(txtPizzaCount);
+		txtPizzaCount.setColumns(10);
 		
 		toppings = new JPanel();
 		toppings.setBackground(new Color(128, 0, 0));
@@ -260,14 +283,8 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 String size = "";
-                if (rdbtnSize1.isSelected()) {
-                    size = "20 cm";
-                } else if (rdbtnSize2.isSelected()) {
-                    size = "25 cm";
-                } else if (rdbtnSize3.isSelected()) {
-                    size = "30 cm";
-                }
+				 
+
 
                 StringBuilder selectedToppings = new StringBuilder();
                 if (chckbxNewCheckBox.isSelected()) {
@@ -287,10 +304,10 @@ public class FirstWindow extends JFrame {
                 }
                 String toppings = selectedToppings.toString();
                 
-                WriteOrderToJson(foodStr,size, toppings, city, street, HouseNr, Name, surname, CreditInfo, CVC);
+                WriteOrderTotxt(foodStr,sizes, toppings, city, street, HouseNr, Name, surname, CreditInfo, CVC,textPizaCount);
                 //String food, String size, String toppings, String city, String street, String HouseNr, String Name, String surname, String CreditInfo, String CVC
 
-                switchPanels(adress);
+                switchPanels(payment);
 		    }
 
 				
@@ -299,7 +316,7 @@ public class FirstWindow extends JFrame {
 				
 		
 		
-		btnNewButton_2_1.setBounds(40, 390, 155, 35);
+		btnNewButton_2_1.setBounds(40, 390, 150, 35);
 		toppings.add(btnNewButton_2_1);
 		
 		adress = new JPanel();
@@ -308,7 +325,7 @@ public class FirstWindow extends JFrame {
 		adress.setLayout(null);
 		
 		city = new JTextField();
-		city.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		city.setFont(new Font("Tahoma", Font.BOLD, 15));
 		city.setBackground(Color.WHITE);
 		city.setBounds(177, 116, 401, 40);
 		adress.add(city);
@@ -327,10 +344,11 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_2.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanels(payment);
 				street.getText();
 				city.getText();
 				HouseNr.getText();
+				switchPanels(delivery);
+				
 				
 			}
 	});
@@ -340,12 +358,14 @@ public class FirstWindow extends JFrame {
 		adress.add(btnNewButton_2_2);
 		
 		street = new JTextField();
+		street.setFont(new Font("Tahoma", Font.BOLD, 15));
 		street.setBackground(Color.WHITE);
 		street.setColumns(10);
 		street.setBounds(177, 195, 401, 41);
 		adress.add(street);
 		
 		HouseNr = new JTextField();
+		HouseNr.setFont(new Font("Tahoma", Font.BOLD, 15));
 		HouseNr.setBackground(Color.WHITE);
 		HouseNr.setColumns(10);
 		HouseNr.setBounds(177, 263, 401, 42);
@@ -368,7 +388,7 @@ public class FirstWindow extends JFrame {
 		txtStreet.setEditable(false);
 		txtStreet.setBackground(new Color(128, 0, 0));
 		txtStreet.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtStreet.setText("street :");
+		txtStreet.setText("Street :");
 		txtStreet.setBorder(null);
 		txtStreet.setColumns(10);
 		txtStreet.setBounds(78, 195, 89, 41);
@@ -395,37 +415,42 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_2_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				switchPanels(delivery);
+				switchPanels(adress);
 			}
 		});
-		btnNewButton_2_2_1.setBounds(40, 390, 150, 40);
+		btnNewButton_2_2_1.setBounds(40, 390, 150, 35);
 		payment.add(btnNewButton_2_2_1);
 		
 		Name = new JTextField();
+		Name.setFont(new Font("Tahoma", Font.BOLD, 15));
 		Name.setBackground(Color.WHITE);
 		Name.setBounds(190, 46, 152, 40);
 		payment.add(Name);
 		Name.setColumns(10);
 		
 		surname = new JTextField();
+		surname.setFont(new Font("Tahoma", Font.BOLD, 15));
 		surname.setBackground(Color.WHITE);
 		surname.setColumns(10);
 		surname.setBounds(190, 97, 136, 37);
 		payment.add(surname);
 		
 		CreditInfo = new JTextField();
+		CreditInfo.setFont(new Font("Tahoma", Font.BOLD, 15));
 		CreditInfo.setBackground(Color.WHITE);
 		CreditInfo.setColumns(10);
 		CreditInfo.setBounds(190, 145, 206, 43);
 		payment.add(CreditInfo);
 		
 		PhoneNr = new JTextField();
+		PhoneNr.setFont(new Font("Tahoma", Font.BOLD, 15));
 		PhoneNr.setBackground(Color.WHITE);
 		PhoneNr.setColumns(10);
 		PhoneNr.setBounds(190, 210, 152, 40);
 		payment.add(PhoneNr);
 		
 		CVC = new JTextField();
+		CVC.setFont(new Font("Tahoma", Font.BOLD, 15));
 		CVC.setBackground(Color.WHITE);
 		CVC.setColumns(10);
 		CVC.setBounds(190, 261, 77, 43);
@@ -490,20 +515,6 @@ public class FirstWindow extends JFrame {
 		delivery.setBackground(new Color(128, 0, 0));
 		layeredPane.add(delivery, "name_192915464996200");
 		delivery.setLayout(null);
-		
-		JLabel lblNewLabel_6 = new JLabel("");
-		lblNewLabel_6.setIcon(new ImageIcon(FirstWindow.class.getResource("/resources/end02.png")));
-		lblNewLabel_6.setBounds(0, 0, 696, 398);
-		delivery.add(lblNewLabel_6);
-		
-		JButton btnNewButton_1_2_1 = new JButton("Close");
-		btnNewButton_1_2_1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				System.exit(ABORT);
-			}
-		});
-		btnNewButton_1_2_1.setBounds(270, 398, 137, 28);
-		delivery.add(btnNewButton_1_2_1);
 		
 		orderMenu = new JPanel();
 		orderMenu.setBackground(new Color(128, 0, 0));
@@ -574,7 +585,7 @@ public class FirstWindow extends JFrame {
 		orderMenu.add(btnNewButton);
 		
 		txtAcilovsPizzeria = new JTextField();
-		txtAcilovsPizzeria.setEnabled(false);
+		txtAcilovsPizzeria.setForeground(new Color(107, 142, 35));
 		txtAcilovsPizzeria.setEditable(false);
 		txtAcilovsPizzeria.setBackground(new Color(128, 0, 0));
 		txtAcilovsPizzeria.setFont(new Font("Vivaldi", Font.BOLD | Font.ITALIC, 40));
@@ -584,9 +595,19 @@ public class FirstWindow extends JFrame {
 		contentPane.add(txtAcilovsPizzeria);
 		txtAcilovsPizzeria.setColumns(10);
 		
+		JButton btnNewButton_1_2_1 = new JButton("Close");
+		btnNewButton_1_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton_1_2_1.setBounds(299, 489, 150, 35);
+		contentPane.add(btnNewButton_1_2_1);
+		btnNewButton_1_2_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(ABORT);
+			}
+		});
+		
 	
 	}
-	private void WriteOrderToJson(String foodStr, String size, String toppings, JTextField city,
+	private void WriteOrderTotxt(String foodStr, ButtonGroup sizes, String toppings, JTextField city,JTextField textPizaCount,
 			JTextField street, JTextField HouseNr, JTextField Name, JTextField surname, JTextField CreditInfo,
 			JTextField CVC) {
 		StringBuilder selectedfood = new StringBuilder();
@@ -610,8 +631,8 @@ public class FirstWindow extends JFrame {
         }
         foodStr = selectedfood.toString();
         
-        String csvFile = "order.json";
-        try (FileWriter writer = new FileWriter(csvFile)) {
+        String txtFile = "order.txt";
+        try (FileWriter writer = new FileWriter(txtFile)) {
             writer.append("Size");
             writer.append(", ");
             writer.append("Toppings");
@@ -633,9 +654,12 @@ public class FirstWindow extends JFrame {
             writer.append("CVC.");
             writer.append(",");
             writer.append("order menu");
+            writer.append(",");
+            writer.append("textPizaCount");
             writer.append("\n");
             
-            writer.append(size);
+            
+            writer.append(sizes);
             writer.append(",");
             writer.append(toppings);
             writer.append(", ");
@@ -652,14 +676,15 @@ public class FirstWindow extends JFrame {
             writer.append(CreditInfo.getText()); 
             writer.append(", ");
             writer.append(CVC.getText()); 
+            writer.append(",");
+            writer.append((CharSequence) textPizaCount);
             writer.append("\n");
             
-            System.out.println("Order details written to json successfully!");
+            System.out.println("Order details written to txt successfully!");
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 }
-	
     }
 
 
