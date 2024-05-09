@@ -3,14 +3,12 @@ package lvt;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
-
+import java.util.ArrayList;
 import java.awt.CardLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
@@ -84,6 +82,7 @@ public class FirstWindow extends JFrame {
 	private String size = "";
 	private JButton btnNewButton_2_1;
 	private JLabel checkLbl;
+	private JButton btnNewButton_3;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -304,6 +303,10 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_1.setBounds(40, 390, 150, 35);
 		toppings.add(btnNewButton_2_1);
 		
+		JLabel lblNewLabel_6 = new JLabel("");
+		lblNewLabel_6.setBounds(390, 67, 275, 275);
+		toppings.add(lblNewLabel_6);
+		
 		adress = new JPanel();
 		adress.setBackground(new Color(128, 0, 0));
 		layeredPane.add(adress, "name_192904821809100");
@@ -391,6 +394,17 @@ public class FirstWindow extends JFrame {
 		txtHomeNr.setColumns(10);
 		txtHomeNr.setBounds(70, 263, 97, 41);
 		adress.add(txtHomeNr);
+		
+		btnNewButton_3 = new JButton("save order");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				WriteOrderTotxt(foodStr, city, street, HouseNr, Name, surname, CreditInfo, CVC,textPizaCount);
+				
+			}
+		});
+		btnNewButton_3.setFont(new Font("Tahoma", Font.BOLD, 15));
+		btnNewButton_3.setBounds(205, 390, 150, 35);
+		adress.add(btnNewButton_3);
 		
 		payment = new JPanel();
 		payment.setBackground(new Color(128, 0, 0));
@@ -503,14 +517,8 @@ public class FirstWindow extends JFrame {
 		payment.add(txtCvc);
 		
 		delivery = new JPanel();
-		delivery.addAncestorListener(new AncestorListener() {
-			public void ancestorAdded(AncestorEvent event) {
-			}
-			public void ancestorMoved(AncestorEvent event) {
-			}
-			public void ancestorRemoved(AncestorEvent event) {
-			}
-		});
+
+	
 		delivery.setBackground(new Color(128, 0, 0));
 		layeredPane.add(delivery, "name_192915464996200");
 		delivery.setLayout(null);
@@ -519,7 +527,7 @@ public class FirstWindow extends JFrame {
 		checkLbl.setForeground(new Color(224, 255, 255));
 		checkLbl.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		checkLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		checkLbl.setBounds(10, 11, 613, 415);
+		checkLbl.setBounds(0, 0, 613, 415);
 		delivery.add(checkLbl);
 		
 		orderMenu = new JPanel();
@@ -607,10 +615,7 @@ public class FirstWindow extends JFrame {
 		contentPane.add(btnNewButton_1_2_1);
 		btnNewButton_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				WriteOrderTotxt(foodStr, city, street, HouseNr, Name, surname, CreditInfo, CVC,textPizaCount);
-
-				
+				System.exit(ABORT);
 			}
 		});
 		
@@ -708,7 +713,7 @@ public class FirstWindow extends JFrame {
             		+ "<br>";
             checkLbl.setText(check);
             System.out.println("Order details written to txt successfully");
-            System.exit(ABORT);
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }
