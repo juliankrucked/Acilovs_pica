@@ -1,0 +1,2 @@
+Size, Toppings, City, street, House Nr., Name, surname, credit card Nr., CVC.,phone Nr., Piza Count
+30 cm,, ,, ,, ,, ,4, 

@@ -502,6 +502,18 @@ public class FirstWindow extends JFrame {
 		txtCvc.setBounds(52, 283, 86, 20);
 		payment.add(txtCvc);
 		
+		JButton btnNewButton_3 = new JButton("Self pick up");
+		btnNewButton_3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switchPanels(delivery);
+				WriteOrderTotxt(foodStr, city, street, HouseNr, Name, surname, CreditInfo, CVC,PhoneNr,textPizaCount);
+				
+			}
+		});
+		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		btnNewButton_3.setBounds(517, 390, 150, 35);
+		payment.add(btnNewButton_3);
+		
 		delivery = new JPanel();
 		delivery.addAncestorListener(new AncestorListener() {
 			public void ancestorAdded(AncestorEvent event) {
@@ -608,9 +620,9 @@ public class FirstWindow extends JFrame {
 		btnNewButton_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				WriteOrderTotxt(foodStr, city, street, HouseNr, Name, surname, CreditInfo, CVC,textPizaCount);
+				WriteOrderTotxt(foodStr, city, street, HouseNr, Name, surname, CreditInfo, CVC,PhoneNr,textPizaCount);
 
-				
+				System.exit(ABORT);
 			}
 		});
 		
@@ -618,7 +630,7 @@ public class FirstWindow extends JFrame {
 	}
 	private void WriteOrderTotxt(String foodStr, JTextField city,JTextField textPizaCount,
 			JTextField street, JTextField HouseNr, JTextField Name, JTextField surname, JTextField CreditInfo,
-			JTextField CVC) {
+			JTextField CVC, JTextField PhoneNr) {
 		StringBuilder selectedfood = new StringBuilder();
         if (food1.isSelected()) {
         	selectedfood.append("lobster, ");
@@ -674,19 +686,17 @@ public class FirstWindow extends JFrame {
             writer.append(", ");
             writer.append("credit card Nr.");
             writer.append(", ");
-            writer.append("phone Nr.");
-            writer.append(", ");
             writer.append("CVC.");
             writer.append(",");
-            writer.append("order menu");
-            writer.append(",");
-            writer.append("textPizaCount");
+            writer.append("phone Nr.");
+            writer.append(", ");
+            writer.append("Piza Count");
             writer.append("\n");
             
             
             writer.append(size);
             writer.append(",");
-            writer.append( toppinzStr);
+            writer.append(toppinzStr);
             writer.append(", ");
             writer.append(city.getText());
             writer.append(",");
@@ -702,13 +712,15 @@ public class FirstWindow extends JFrame {
             writer.append(", ");
             writer.append(CVC.getText()); 
             writer.append(",");
+            writer.append(PhoneNr.getText());
+            writer.append(", ");
             writer.append(textPizaCount.getText());
             writer.append("\n");
             String check="<br>"
             		+ "<br>";
             checkLbl.setText(check);
             System.out.println("Order details written to txt successfully");
-            System.exit(ABORT);
+            
         } catch (IOException ex) {
             ex.printStackTrace();
         }
