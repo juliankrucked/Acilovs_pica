@@ -410,7 +410,7 @@ public class FirstWindow extends JFrame {
 		Name = new JTextField();
 		Name.setFont(new Font("Tahoma", Font.BOLD, 15));
 		Name.setBackground(Color.WHITE);
-		Name.setBounds(190, 46, 152, 40);
+		Name.setBounds(190, 46, 160, 40);
 		payment.add(Name);
 		Name.setColumns(10);
 		
@@ -418,28 +418,28 @@ public class FirstWindow extends JFrame {
 		surname.setFont(new Font("Tahoma", Font.BOLD, 15));
 		surname.setBackground(Color.WHITE);
 		surname.setColumns(10);
-		surname.setBounds(190, 97, 136, 37);
+		surname.setBounds(190, 97, 140, 40);
 		payment.add(surname);
 		
 		CreditInfo = new JTextField();
 		CreditInfo.setFont(new Font("Tahoma", Font.BOLD, 15));
 		CreditInfo.setBackground(Color.WHITE);
 		CreditInfo.setColumns(10);
-		CreditInfo.setBounds(190, 145, 206, 43);
+		CreditInfo.setBounds(190, 145, 210, 40);
 		payment.add(CreditInfo);
 		
 		PhoneNr = new JTextField();
 		PhoneNr.setFont(new Font("Tahoma", Font.BOLD, 15));
 		PhoneNr.setBackground(Color.WHITE);
 		PhoneNr.setColumns(10);
-		PhoneNr.setBounds(190, 210, 152, 40);
+		PhoneNr.setBounds(190, 196, 150, 40);
 		payment.add(PhoneNr);
 		
 		CVC = new JTextField();
 		CVC.setFont(new Font("Tahoma", Font.BOLD, 15));
 		CVC.setBackground(Color.WHITE);
 		CVC.setColumns(10);
-		CVC.setBounds(190, 261, 77, 43);
+		CVC.setBounds(190, 247, 80, 40);
 		payment.add(CVC);
 		
 		txtName = new JTextField();
@@ -487,7 +487,7 @@ public class FirstWindow extends JFrame {
 		txtPhoneNr.setHorizontalAlignment(SwingConstants.RIGHT);
 		txtPhoneNr.setBorder(null);
 		txtPhoneNr.setColumns(10);
-		txtPhoneNr.setBounds(52, 229, 86, 20);
+		txtPhoneNr.setBounds(55, 206, 86, 20);
 		payment.add(txtPhoneNr);
 		
 		txtCvc = new JTextField();
@@ -499,7 +499,7 @@ public class FirstWindow extends JFrame {
 		txtCvc.setText("CVC : ");
 		txtCvc.setBorder(null);
 		txtCvc.setColumns(10);
-		txtCvc.setBounds(52, 283, 86, 20);
+		txtCvc.setBounds(52, 260, 86, 20);
 		payment.add(txtCvc);
 		
 		JButton btnNewButton_3 = new JButton("Self pick up");
