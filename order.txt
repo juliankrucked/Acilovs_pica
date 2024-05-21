@@ -1,2 +1,2 @@
-Size, Toppings, City, street, House Nr., Name, surname, credit card Nr., CVC.,phone Nr., Piza Count
-30 cm,, ,, ,, ,, ,4, 
+Size, Toppings, Name, surname, credit card Nr., CVC.,phone Nr., Piza Count, City, street, House Nr.
+25 cm,Shrimps, , ,, aaaaaaa,bbbbbbbbbbb, cccccc,222, ddd,234, ,,, aaaaaaa

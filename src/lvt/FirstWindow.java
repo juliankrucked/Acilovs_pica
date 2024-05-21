@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.io.*;
 
 import java.awt.CardLayout;
+import java.util.Scanner;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
@@ -83,7 +84,7 @@ public class FirstWindow extends JFrame {
 	private JTextField textPizaCount;
 	private String size = "";
 	private JButton btnNewButton_2_1;
-	private JLabel checkLbl;
+	private JLabel textwind;
 	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
@@ -527,12 +528,12 @@ public class FirstWindow extends JFrame {
 		layeredPane.add(delivery, "name_192915464996200");
 		delivery.setLayout(null);
 		
-		checkLbl = new JLabel("Order details written to order.txt successfully");
-		checkLbl.setForeground(new Color(224, 255, 255));
-		checkLbl.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		checkLbl.setHorizontalAlignment(SwingConstants.CENTER);
-		checkLbl.setBounds(10, 11, 613, 415);
-		delivery.add(checkLbl);
+		textwind = new JLabel("Order details written to order.txt successfully");
+		textwind.setForeground(new Color(224, 255, 255));
+		textwind.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		textwind.setHorizontalAlignment(SwingConstants.CENTER);
+		textwind.setBounds(10, 11, 613, 415);
+		delivery.add(textwind);
 		
 		orderMenu = new JPanel();
 		orderMenu.setBackground(new Color(128, 0, 0));
@@ -625,8 +626,25 @@ public class FirstWindow extends JFrame {
 				System.exit(ABORT);
 			}
 		});
+		String ordershown="";
+		//Scanner scan = new Scanner (new File("order.txt"));
+		try (BufferedReader br = new BufferedReader(new FileReader("order.txt"))) {
+            // Read a single line from the file
+			ordershown = br.readLine();
+
+            // Print the line read from the file
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+		//StringBuilder sb = new StringBuilder();
+
+		//while (scan.hasNext()) {
+		//    sb.append(scan.next());
+		//}
+
 		
-	
+		textwind.setText(ordershown);
 	}
 	private void WriteOrderTotxt(String foodStr, JTextField city,JTextField textPizaCount,
 			JTextField street, JTextField HouseNr, JTextField Name, JTextField surname, JTextField CreditInfo,
@@ -674,12 +692,6 @@ public class FirstWindow extends JFrame {
             writer.append(", ");
             writer.append("Toppings");
             writer.append(", ");
-            writer.append("City");
-            writer.append(", ");
-            writer.append("street");
-            writer.append(", ");
-            writer.append("House Nr.");
-            writer.append(", ");
             writer.append("Name");
             writer.append(", ");
             writer.append("surname");
@@ -691,6 +703,12 @@ public class FirstWindow extends JFrame {
             writer.append("phone Nr.");
             writer.append(", ");
             writer.append("Piza Count");
+            writer.append(", ");
+            writer.append("City");
+            writer.append(", ");
+            writer.append("street");
+            writer.append(", ");
+            writer.append("House Nr.");
             writer.append("\n");
             
             
@@ -715,10 +733,17 @@ public class FirstWindow extends JFrame {
             writer.append(PhoneNr.getText());
             writer.append(", ");
             writer.append(textPizaCount.getText());
+            writer.append(",");
+            writer.append(city.getText());
+            writer.append(",");
+            writer.append(street.getText()); 
+            writer.append(", ");
+            writer.append(HouseNr.getText());
+
             writer.append("\n");
-            String check="<br>"
+            String check="<br>"+ txtFile.toString()
             		+ "<br>";
-            checkLbl.setText(check);
+            textwind.setText(check);
             System.out.println("Order details written to txt successfully");
             
         } catch (IOException ex) {
