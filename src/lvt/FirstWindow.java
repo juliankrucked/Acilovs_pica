@@ -621,69 +621,50 @@ public class FirstWindow extends JFrame {
 		btnNewButton_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				WriteOrderTotxt(foodStr, city, street, HouseNr, Name, surname, CreditInfo, CVC,PhoneNr,textPizaCount);
+				WriteOrderTotxt(foodStr, Name, surname, CreditInfo, CVC,PhoneNr,textPizaCount, city, street, HouseNr);
 
 				System.exit(ABORT);
 			}
 		});
-		String ordershown="";
-		//Scanner scan = new Scanner (new File("order.txt"));
-		try (BufferedReader br = new BufferedReader(new FileReader("order.txt"))) {
-            // Read a single line from the file
-			ordershown = br.readLine();
 
-            // Print the line read from the file
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-		//StringBuilder sb = new StringBuilder();
-
-		//while (scan.hasNext()) {
-		//    sb.append(scan.next());
-		//}
-
-		
-		textwind.setText(ordershown);
 	}
-	private void WriteOrderTotxt(String foodStr, JTextField city,JTextField textPizaCount,
-			JTextField street, JTextField HouseNr, JTextField Name, JTextField surname, JTextField CreditInfo,
-			JTextField CVC, JTextField PhoneNr) {
+	private void WriteOrderTotxt(String foodStr, JTextField city, JTextField Name, JTextField surname, JTextField CreditInfo,
+			JTextField CVC, JTextField PhoneNr, JTextField textPizaCount,JTextField street, JTextField HouseNr) {
 		StringBuilder selectedfood = new StringBuilder();
         if (food1.isSelected()) {
-        	selectedfood.append("lobster, ");
+        	selectedfood.append("lobster ");
         }
         if (food2.isSelected()) {
-        	selectedfood.append("sandwich, ");
+        	selectedfood.append("sandwich ");
         }
         if (food3.isSelected()) {
-        	selectedfood.append("Burger, ");
+        	selectedfood.append("Burger ");
         }
         if (food4.isSelected()) {
-        	selectedfood.append("lasagna, ");
+        	selectedfood.append("lasagna ");
         }
         if (food5.isSelected()) {
-        	selectedfood.append("sushi, ");
+        	selectedfood.append("sushi ");
         }
         if (food6.isSelected()) {
-        	selectedfood.append("steak, ");
+        	selectedfood.append("steak ");
         }
         foodStr = selectedfood.toString();
         StringBuilder selectedToppings = new StringBuilder();
         if (chckbxNewCheckBox.isSelected()) {
-            selectedToppings.append("Shrimps, ");
+            selectedToppings.append("Shrimps ");
         }
         if (chckbxNewCheckBox_1.isSelected()) {
-            selectedToppings.append("Olives, ");
+            selectedToppings.append("Olives ");
         }
         if (chckbxNewCheckBox_2.isSelected()) {
-            selectedToppings.append("Salami, ");
+            selectedToppings.append("Salami ");
         }
         if (chckbxNewCheckBox_3.isSelected()) {
-            selectedToppings.append("Shampinions, ");
+            selectedToppings.append("Shampinions ");
         }
         if (chckbxNewCheckBox_4.isSelected()) {
-            selectedToppings.append("Pineapple, ");
+            selectedToppings.append("Pineapple ");
         }
         String toppinzStr =  selectedToppings.toString();
         String txtFile = "order.txt";
@@ -739,12 +720,27 @@ public class FirstWindow extends JFrame {
             writer.append(street.getText()); 
             writer.append(", ");
             writer.append(HouseNr.getText());
-
             writer.append("\n");
-            String check="<br>"+ txtFile.toString()
-            		+ "<br>";
-            textwind.setText(check);
+            
+           
             System.out.println("Order details written to txt successfully");
+    		String ordershown="";
+
+    		try (BufferedReader br = new BufferedReader(new FileReader("order.txt"))) {
+                // Read a single line from the file
+    			ordershown = br.readLine();
+
+                // Print the line read from the file
+
+            } catch (IOException e) {
+                e.printStackTrace();
+                textwind.setText(ordershown);
+       		 String check="<br>"+ ordershown
+        		+ "<br>";
+       		textwind.setText(check);
+            }
+    		
+             
             
         } catch (IOException ex) {
             ex.printStackTrace();
