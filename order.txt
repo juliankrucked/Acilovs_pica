@@ -1,2 +1,0 @@
-Size, Toppings, Name, surname, credit card Nr., CVC.,phone Nr., Piza Count, City, street, House Nr.
-25 cm,Salami , liene,, ,liepa, 123456789,123, 22222222,3, ,liene,, 

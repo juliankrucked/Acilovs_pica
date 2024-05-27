@@ -1,11 +1,8 @@
 package lvt;
 
-import java.awt.*;
-import java.awt.event.*;
 import java.io.*;
 
 import java.awt.CardLayout;
-import java.util.Scanner;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.EventQueue;
@@ -20,18 +17,11 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
-import javax.swing.JSlider;
-import javax.swing.JProgressBar;
-import javax.swing.JSeparator;
-import javax.swing.JTextArea;
-import javax.swing.JMenuBar;
-import javax.swing.JComboBox;
 import javax.swing.event.AncestorListener;
 import javax.swing.event.AncestorEvent;
 
@@ -55,7 +45,7 @@ public class FirstWindow extends JFrame {
 	private JTextField txtAdress;
 	private JTextField street;
 	private JTextField HouseNr;
-	private JTextField txtCountry;
+	private JTextField txtCity;
 	private JTextField txtStreet;
 	private JTextField txtHomeNr;
 	private JTextField Name;
@@ -290,9 +280,6 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_1.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		btnNewButton_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//WriteOrderTotxt(foodStr, city, street, HouseNr, Name, surname, CreditInfo, CVC,textPizaCount);
-                //String food, String size, String toppings, String city, String street, String HouseNr, String Name, String surname, String CreditInfo, String CVC
-
                 switchPanels(payment);
 		    }
 
@@ -331,10 +318,8 @@ public class FirstWindow extends JFrame {
 		btnNewButton_2_2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(delivery);
-				street.getText();
-				city.getText();
-				HouseNr.getText();
-				
+				WriteOrderTotxt( Name, surname, CreditInfo, CVC,PhoneNr,textPizaCount, city, street, HouseNr);
+				displayOrderDetails();
 			}
 	});
 		
@@ -356,17 +341,17 @@ public class FirstWindow extends JFrame {
 		HouseNr.setBounds(177, 263, 401, 42);
 		adress.add(HouseNr);
 		
-		txtCountry = new JTextField();
-		txtCountry.setFont(new Font("Tahoma", Font.BOLD, 15));
-		txtCountry.setBorder(null);
-		txtCountry.setEditable(false);
-		txtCountry.setForeground(new Color(224, 255, 255));
-		txtCountry.setBackground(new Color(128, 0, 0));
-		txtCountry.setText("City :");
-		txtCountry.setHorizontalAlignment(SwingConstants.RIGHT);
-		txtCountry.setColumns(10);
-		txtCountry.setBounds(78, 116, 89, 41);
-		adress.add(txtCountry);
+		txtCity = new JTextField();
+		txtCity.setFont(new Font("Tahoma", Font.BOLD, 15));
+		txtCity.setBorder(null);
+		txtCity.setEditable(false);
+		txtCity.setForeground(new Color(224, 255, 255));
+		txtCity.setBackground(new Color(128, 0, 0));
+		txtCity.setText("City :");
+		txtCity.setHorizontalAlignment(SwingConstants.RIGHT);
+		txtCity.setColumns(10);
+		txtCity.setBounds(78, 116, 89, 41);
+		adress.add(txtCity);
 		
 		txtStreet = new JTextField();
 		txtStreet.setForeground(new Color(224, 255, 255));
@@ -476,7 +461,7 @@ public class FirstWindow extends JFrame {
 		txtCreditCardNr.setBackground(new Color(128, 0, 0));
 		txtCreditCardNr.setBorder(null);
 		txtCreditCardNr.setColumns(10);
-		txtCreditCardNr.setBounds(52, 167, 86, 20);
+		txtCreditCardNr.setBounds(10, 167, 128, 20);
 		payment.add(txtCreditCardNr);
 		
 		txtPhoneNr = new JTextField();
@@ -507,8 +492,8 @@ public class FirstWindow extends JFrame {
 		btnNewButton_3.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switchPanels(delivery);
-				WriteOrderTotxt(foodStr, city, street, HouseNr, Name, surname, CreditInfo, CVC,PhoneNr,textPizaCount);
-				
+				WriteOrderTotxt( city, street, HouseNr, Name, surname, CreditInfo, CVC,PhoneNr,textPizaCount);
+				displayOrderDetails();
 			}
 		});
 		btnNewButton_3.setFont(new Font("Tahoma", Font.PLAIN, 20));
@@ -528,7 +513,8 @@ public class FirstWindow extends JFrame {
 		layeredPane.add(delivery, "name_192915464996200");
 		delivery.setLayout(null);
 		
-		textwind = new JLabel("Order details written to order.txt successfully");
+		
+		textwind = new JLabel();
 		textwind.setForeground(new Color(224, 255, 255));
 		textwind.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textwind.setHorizontalAlignment(SwingConstants.CENTER);
@@ -597,10 +583,12 @@ public class FirstWindow extends JFrame {
 		btnNewButton = new JButton("check out");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				System.out.print("testicle");
 				switchPanels(adress);
 			}
 		});
 		btnNewButton.setBounds(287, 390, 97, 23);
+		
 		orderMenu.add(btnNewButton);
 		
 		txtAcilovsPizzeria = new JTextField();
@@ -621,14 +609,14 @@ public class FirstWindow extends JFrame {
 		btnNewButton_1_2_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				
-				WriteOrderTotxt(foodStr, Name, surname, CreditInfo, CVC,PhoneNr,textPizaCount, city, street, HouseNr);
+				WriteOrderTotxt( Name, surname, CreditInfo, CVC,PhoneNr,textPizaCount, city, street, HouseNr);
 
 				System.exit(ABORT);
 			}
 		});
 
 	}
-	private void WriteOrderTotxt(String foodStr, JTextField city, JTextField Name, JTextField surname, JTextField CreditInfo,
+	private void WriteOrderTotxt(JTextField city, JTextField Name, JTextField surname, JTextField CreditInfo,
 			JTextField CVC, JTextField PhoneNr, JTextField textPizaCount,JTextField street, JTextField HouseNr) {
 		StringBuilder selectedfood = new StringBuilder();
         if (food1.isSelected()) {
@@ -666,86 +654,51 @@ public class FirstWindow extends JFrame {
         if (chckbxNewCheckBox_4.isSelected()) {
             selectedToppings.append("Pineapple ");
         }
-        String toppinzStr =  selectedToppings.toString();
-        String txtFile = "order.txt";
-        try (FileWriter writer = new FileWriter(txtFile)) {
-            writer.append("Size");
-            writer.append(", ");
-            writer.append("Toppings");
-            writer.append(", ");
-            writer.append("Name");
-            writer.append(", ");
-            writer.append("surname");
-            writer.append(", ");
-            writer.append("credit card Nr.");
-            writer.append(", ");
-            writer.append("CVC.");
-            writer.append(",");
-            writer.append("phone Nr.");
-            writer.append(", ");
-            writer.append("Piza Count");
-            writer.append(", ");
-            writer.append("City");
-            writer.append(", ");
-            writer.append("street");
-            writer.append(", ");
-            writer.append("House Nr.");
-            writer.append("\n");
-            
-            
-            writer.append(size);
-            writer.append(",");
-            writer.append(toppinzStr);
-            writer.append(", ");
-            writer.append(city.getText());
-            writer.append(",");
-            writer.append(street.getText()); 
-            writer.append(", ");
-            writer.append(HouseNr.getText());
-            writer.append(",");
-            writer.append(Name.getText()); 
-            writer.append(", ");
-            writer.append(surname.getText()); 
-            writer.append(",");
-            writer.append(CreditInfo.getText()); 
-            writer.append(", ");
-            writer.append(CVC.getText()); 
-            writer.append(",");
-            writer.append(PhoneNr.getText());
-            writer.append(", ");
-            writer.append(textPizaCount.getText());
-            writer.append(",");
-            writer.append(city.getText());
-            writer.append(",");
-            writer.append(street.getText()); 
-            writer.append(", ");
-            writer.append(HouseNr.getText());
-            writer.append("\n");
-            
-           
-            System.out.println("Order details written to txt successfully");
-    		String ordershown="";
-
-    		try (BufferedReader br = new BufferedReader(new FileReader("order.txt"))) {
-                // Read a single line from the file
-    			ordershown = br.readLine();
-
-                // Print the line read from the file
-
-            } catch (IOException e) {
-                e.printStackTrace();
-                textwind.setText(ordershown);
-       		 String check="<br>"+ ordershown
-        		+ "<br>";
-       		textwind.setText(check);
-            }
-    		
-             
-            
+        String fileName = "orderDetails.txt";
+		try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+			writer.write("Order Details:");
+			writer.newLine();
+			writer.write("Size: " + size);
+			writer.newLine();
+			writer.write("Toppings: " + selectedToppings);
+			writer.newLine();
+			writer.write("City: " + city.getText());
+			writer.newLine();
+			writer.write("Street: " + street.getText());
+			writer.newLine();
+			writer.write("House Nr: " + HouseNr.getText());
+			writer.newLine();
+			writer.write("Name: " + Name.getText());
+			writer.newLine();
+			writer.write("Surname: " + surname.getText());
+			writer.newLine();
+			writer.write("Credit Card Nr: " + CreditInfo.getText());
+			writer.newLine();
+			writer.write("Phone Nr: " + PhoneNr.getText());
+			writer.newLine();
+			writer.write("CVC: " + CVC.getText());
+			writer.newLine();
+			writer.write("premade food: " + foodStr);
+			displayOrderDetails();
         } catch (IOException ex) {
             ex.printStackTrace();
         }
 }
+	private void displayOrderDetails() {
+		String fileName = "orderDetails.txt";
+		try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+		    StringBuilder sb = new StringBuilder();
+		    String line;
+		    while ((line = reader.readLine()) != null) {
+		        sb.append(line).append("\n"); // Append each line to the StringBuilder
+		    }
+		    // Set the text of the JTextField with the contents read from the file
+		    textwind.setText(sb.toString());
+		    textwind.setText("pluh");
+		} catch (IOException e) {
+		    e.printStackTrace();
+		}
+	}
     }
 
 
