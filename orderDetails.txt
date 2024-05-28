@@ -1,0 +1,12 @@
+Order Details:
+Size: 25 cm
+Toppings: Olives Salami 
+City: liepaja
+Street: ventas
+House Nr: 234
+Name: anna
+Surname: ozola
+Credit Card Nr: 234234523
+Phone Nr: 1234444
+CVC: 234
+premade food: 

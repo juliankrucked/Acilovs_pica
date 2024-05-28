@@ -22,8 +22,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.MatteBorder;
-import javax.swing.event.AncestorListener;
-import javax.swing.event.AncestorEvent;
+
 
 public class FirstWindow extends JFrame {
 
@@ -501,14 +500,7 @@ public class FirstWindow extends JFrame {
 		payment.add(btnNewButton_3);
 		
 		delivery = new JPanel();
-		delivery.addAncestorListener(new AncestorListener() {
-			public void ancestorAdded(AncestorEvent event) {
-			}
-			public void ancestorMoved(AncestorEvent event) {
-			}
-			public void ancestorRemoved(AncestorEvent event) {
-			}
-		});
+		
 		delivery.setBackground(new Color(128, 0, 0));
 		layeredPane.add(delivery, "name_192915464996200");
 		delivery.setLayout(null);
@@ -518,7 +510,7 @@ public class FirstWindow extends JFrame {
 		textwind.setForeground(new Color(224, 255, 255));
 		textwind.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		textwind.setHorizontalAlignment(SwingConstants.CENTER);
-		textwind.setBounds(10, 11, 613, 415);
+		textwind.setBounds(10, 11, 676, 415);
 		delivery.add(textwind);
 		
 		orderMenu = new JPanel();
@@ -610,7 +602,7 @@ public class FirstWindow extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				
 				WriteOrderTotxt( Name, surname, CreditInfo, CVC,PhoneNr,textPizaCount, city, street, HouseNr);
-
+				displayOrderDetails();
 				System.exit(ABORT);
 			}
 		});
@@ -686,18 +678,19 @@ public class FirstWindow extends JFrame {
 }
 	private void displayOrderDetails() {
 		String fileName = "orderDetails.txt";
+		String str="<html>";
 		try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-		    StringBuilder sb = new StringBuilder();
+		    
 		    String line;
 		    while ((line = reader.readLine()) != null) {
-		        sb.append(line).append("\n"); // Append each line to the StringBuilder
+		    	System.out.print(line);
+		        str+="<br>"+line;
 		    }
-		    // Set the text of the JTextField with the contents read from the file
-		    textwind.setText(sb.toString());
-		    textwind.setText("pluh");
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
+		str+="</html>";
+		textwind.setText(str);
 	}
     }
 
